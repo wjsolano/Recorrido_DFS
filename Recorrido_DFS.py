@@ -59,3 +59,37 @@ class Grafo:
         """
         for llave in self.m_lista_adyacente.keys():
             print("Nodo", llave, ": ", self.m_lista_adyacente[llave])
+
+    """
+        Por última función se tiene el recorrido por DFS(busqueda por profunidad).
+        El único parámetro que recibe el nodo incial, el nodo de objetivo que tiene,  
+        el camino transversal y la variable de visitado para saber si dicho nodo ha
+        sido visitado o no.
+    """
+    def recorrido_dfs(self, nodo_inicial, nodo_objetivo, transversal = [], visitado = set()):
+        """
+            En la ruta transversal se agrega el nodo inicial, como ya ha sido agregado a la
+            ruta transversal lo marcamos como si ya hubiera dio visitado.
+        """
+        transversal.append(nodo_inicial)
+        visitado.add(nodo_inicial)
+        """
+            Si el nodo inicial es el nodo del objetivo no hace falta de hacer mas procesos,
+            solo se retorna la ruta transversal, ya que, ha cumplido con el objetivo
+        """
+        if nodo_inicial == nodo_objetivo:
+            return transversal 
+        """
+            Caso contrario de que no sea el nodo objetivo, se debe de realizar un ciclo for
+            el cual se encargará de visitar el nodo vecicno y aplica la recursividad a la funcion
+            que hacer el recorrido dfs.
+        """
+        for (nodovecino, peso) in self.m_lista_adyacente[nodo_inicial]:
+            if nodovecino not in visitado:
+                #recursividad a la funcion recorrido_dfs
+                resultado = self.recorrido_dfs(nodovecino, nodo_objetivo, transversal , visitado)
+                #si el resultado no es ninguno devuelve el mismo resultado
+                if resultado is not None:
+                    return resultado
+        transversal.pop()
+        return None
