@@ -46,3 +46,16 @@ class Grafo:
         #En caso de que el grafo no este dirigo.
         if not self.m_dirigido:
             self.m_lista_adyacente[nodo2].add((nodo1, grosor))
+
+    """
+        Continuamos con la función que se encargará de dibujar el grafo. Esta clase no tendrá
+        ningun parámetro que recibir, simplemente se encuentra el por defecto. 
+    """
+    def dibujar_grafo(self):
+        """
+            Para dibujar se usa in ciclo for con una variable llamada llave, con la cual
+            se recorrerá la lista adyacente de cada llave. Mientras existas llaves se imprime
+            un mensaje con el número de nodos y la lista de dicha llave. 
+        """
+        for llave in self.m_lista_adyacente.keys():
+            print("Nodo", llave, ": ", self.m_lista_adyacente[llave])
