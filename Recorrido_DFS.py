@@ -93,3 +93,35 @@ class Grafo:
                     return resultado
         transversal.pop()
         return None
+"""
+Para poder ejectar la clase anteriormente creada, se necesita una funcion main,
+la cual se caracteriza por tener el nomnbre __name__. 
+"""
+
+if __name__ == "__main__":
+    """
+    Se le solicita al usuario el número de nodos con los que desea trabajar, se debe
+    de transformar a int el dato. Luego se instancia la clase Grafo, asignando el 
+    parámetro que se solicito al usuario y si es dirigido o no.
+    """
+    numero_de_nodos=int(input("Ingrese el número de nodos del grafo: "))
+    graph = Grafo(numero_de_nodos, dirigido=False)
+
+    """
+    Ciclo for para que dependiendo del numero de nodos ingresado por el usuario
+    agregge el borde de cada uno
+    """
+    for i in range(numero_de_nodos):
+        print("Nodo número:  "+ str(i))
+        borde1=int(input("Agrege el primer borde: "))
+        borde2=int(input("Agrege el segundo borde: "))
+        #Enviando datos que ha registrado el usaurio
+        graph.agregar_borde(borde1,borde2) 
+
+    #SE IMPRIME EL GRAFO DE MANERA GRÁFICA
+    graph.dibujar_grafo()
+    nodo_inicial=int(input("Ingrese el nodo inicial para comenzar el recorrido: "))
+    nodo_final=int(input("Ingrese el nodo final con el que desea terminar el recorrido: "))
+    camino_transversal = []
+    camino_transversal = graph.recorrido_dfs(nodo_inicial, nodo_final)
+    print(f" El camino transversal desde el nodo {nodo_inicial} al nodo {nodo_final} es {camino_transversal}")
