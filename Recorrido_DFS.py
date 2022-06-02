@@ -30,3 +30,19 @@ class Grafo:
             diccionario implementará una lista adyacente. 
         """
         self.m_lista_adyacente = {nodo: set() for nodo in self.m_nodos} 
+    """
+        La primera función aparte del constructor será para agregar borde a los nodos. 
+        Como parámetro se obtiene el nodo1 y el nodo 2 y el peso de la arista que une esos nodos.
+        Para este caso el peso de la arista, es decir, el grsosor será por defecto de 1.
+    """
+    def agregar_borde(self, nodo1, nodo2, grosor=1):
+        '''Agregando el borde'''
+        """
+            Si el grafo es dirigido se deberá agregar el boorde del nodo 1 que tiene la lista,
+            al nodo 2 con su groso por defecto. Mientras que, si el grafo no es dirigido, 
+            se agrega el borde en las dos direcciones.
+        """
+        self.m_lista_adyacente[nodo1].add((nodo2, grosor))
+        #En caso de que el grafo no este dirigo.
+        if not self.m_dirigido:
+            self.m_lista_adyacente[nodo2].add((nodo1, grosor))
